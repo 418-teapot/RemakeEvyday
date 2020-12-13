@@ -252,3 +252,30 @@ sudo pacman -S clang llvm gdb lldb cmake
 ```bash
 sudo pacman -S ctags
 ```
+
+### jetbrains-toolbox
+
+- 安装 `jdk`
+
+```bash
+sudo pacman -S jdk
+```
+
+- 现在的 `jetbrains-toolbox` 在 `AppimageLanucher` 下有一些问题：
+
+```txt
+Toolbox
+When toolbox is first launched, it creates a copy of itself in ~/.local/share/JetBrains/Toolbox/bin/. This is something the developers did intentionally. It also creates it's own desktop file and icons in other locations. In other words, this is a very messy application.
+AppImageLauncher
+AppImageLauncher is in short an AppImage manager. Upon launching an AppImage for the first time, it will move the AppImage to well-known location (usually ~/Applications), and creates standard a desktop file with a menu option which offers uninstalling the AppImage. This allows us to uninstall AppImages very easily.
+The Problem
+Because of the way the regular Jetbrains toolbox app works, AppImageLauncher is often caught in a wild goose chase of finding a new copy of the application and repeatedly asking us to integrate it into the system. Of course this doesn't work and because when the new AppImage is integrated and run, it once again creates a new copy, etc, etc.
+```
+
+相关问题: [issues239](https://github.com/TheAssassin/AppImageLauncher/issues/239) [issues338](https://github.com/TheAssassin/AppImageLauncher/issues/338) [TBX3948](https://youtrack.jetbrains.com/issue/TBX-3948)
+
+- 解决方案(任选其一)
+
+1. 使用 `yay` 安装 `jetbrains-toolbox`，在生成的桌面文件启动命令添加 `X-AppImage-Integrate=false`
+
+2. 使用 `yay` 安装 `jetbrains-toolbox-fix`
