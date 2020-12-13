@@ -162,7 +162,7 @@ sudo pacman -S latte-dock
 - 更换默认 `shell` 为 `zsh`
 
 ```bash
-sudo chsh -s /bin/zsh
+chsh -s /bin/zsh
 ```
 
 ~~- 安装 `OhMyZsh` 主题(废弃)~~
