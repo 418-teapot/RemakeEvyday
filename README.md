@@ -166,3 +166,45 @@ sudo pacman -S plasma5-applets-active-window-control
 `鼠标离开时依然显示`: `ON`
 
 `在图标和文字旁显示`: `ON`
+
+### vscode
+
+```bash
+yay -S visual-stduio-code-bin
+```
+
+配置使用 `vscode` 自带的同步功能进行同步
+
+有时登陆帐号后会出现`将登陆信息写入密钥链失败`的错误，按照以下命令
+
+```bash
+sudo pacman -S gnome-keyring
+```
+
+### LaTex
+
+```bash
+sudo pacman -S texlive-most texlive-lang
+```
+
+使用 `vscode` 进行编写，`xelatex` 编译，`vscode` 中的设置已同步
+
+### C/C++ 环境
+
+```bash
+sudo pacman -S cmake
+```
+
+`vscode` 中的 `cmake-tools` 有时会扫描不到 `kit`，这时要按下 `ctrl+shift+p` 输入 `Edit Usr-Local CMake Kits`,按照以下形式
+
+```json
+[
+  {
+    "name": "GCC",
+    "compilers": {
+      "C": "/bin/gcc",
+      "CXX": "/bin/g++"
+    }
+  }
+]
+```
