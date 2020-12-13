@@ -157,6 +157,32 @@ Theme=Material-Color-Pink
 sudo pacman -S latte-dock
 ```
 
+### zsh 配置
+
+- 更换默认 `shell` 为 `zsh`
+
+```bash
+sudo chsh -s /bin/zsh
+```
+
+~~- 安装 `OhMyZsh` 主题(废弃)~~
+
+```bash
+git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+```
+
+- 安装 `zinit` 管理器
+
+```bash
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zinit/master/doc/install.sh)"
+```
+
+`zinit` 的更新命令是 `zinit self-update`
+
+- 将系统自带的 `zshrc` 备份，写入新的 `zshrc`
+
+`zshrc` 见本项目的 `zsh.zshrc`
+
 ### 全局菜单
 
 - 全局菜单部件在 KDE 小部件中
