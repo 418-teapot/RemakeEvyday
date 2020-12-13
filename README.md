@@ -70,6 +70,16 @@ sudo pacman -Syyu
 sudo pacman -S archlinuxcn-keyring
 ```
 
+### 修改 grub 等待时间
+
+```bash
+sudo vim /etc/default/grub
+# 修改下面的值
+GRUB_TIMEOUT=...
+
+sudo update-grub
+```
+
 ### fcitx5 输入法
 
 - 安装主题和必要包
