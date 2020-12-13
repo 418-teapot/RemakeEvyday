@@ -46,6 +46,30 @@ exit
 sudo pacman -S base-devel yay
 ```
 
+### 换源
+
+- 换源
+
+```bash
+sudo pacman-mirrors -i -c China -m rank
+sudo pacman-mirrors -g
+sudo pacman -Syyu
+```
+
+- 添加 archlinuxcn(可选)
+
+```bash
+sudo vim /etc/pacman.conf
+#复制以下配置到文件末尾
+[archlinuxcn]
+SigLevel = Optional TrustAll
+Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch
+Server = https://mirrors.ustc.edu.cn/archlinuxcn/$arch
+
+sudo pacman -Syyu
+sudo pacman -S archlinuxcn-keyring
+```
+
 ### fcitx5 输入法
 
 - 安装主题和必要包
@@ -75,6 +99,16 @@ XMODIFIERS    DEFAULT=\@im=fcitx5
 
 其他配置参阅 [ArchWiKi](https://wiki.archlinux.org/index.php/Fcitx5_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87))
 
+- 安装词库
+
+可以从 kcm-fcitx5 的配置里面添加搜狗词库
+
+也可以下载[肥猫百万词库](https://github.com/felixonmars/fcitx5-pinyin-zhwiki)
+
+```bash
+yay -S fcitx5-pinyin-zhwiki
+```
+
 - 安装中文字体(可选)
 
 `manjaro` 自带的有中文字体，这一步选配
@@ -89,7 +123,7 @@ sudo pacman -S adobe-source-han-sans-cn-fonts adobe-source-han-serif-cn-fonts
 sudo pacman -S fcitx5-material-color
 ```
 
-[项目地址](https://github.com/hosxy/Fcitx5-Material-Color)
+[fcitx5-material-color 项目地址](https://github.com/hosxy/Fcitx5-Material-Color)
 
 修改配置文件 `~/.config/fcitx5/conf/classicui.conf`
 
@@ -106,3 +140,26 @@ Font="思源黑体 CN Medium 13"
 # 主题
 Theme=Material-Color-Pink
 ```
+
+### dock 栏
+
+```bash
+sudo pacman -S latte-dock
+```
+
+### 全局菜单
+
+- 全局菜单部件在 KDE 小部件中
+
+- 最大化消除顶栏
+
+```bash
+sudo pacman -S plasma5-applets-active-window-control
+```
+
+拖到顶部面板后进行相关设置
+
+`最大化窗口隐藏标题栏`: ON
+`仅显示当前屏幕的活动窗口`: ON
+`鼠标离开时依然显示`: ON
+`在图标和文字旁显示`: ON
