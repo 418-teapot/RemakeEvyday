@@ -276,6 +276,6 @@ Because of the way the regular Jetbrains toolbox app works, AppImageLauncher is 
 
 - 解决方案(任选其一)
 
-1. 使用 `yay` 安装 `jetbrains-toolbox`，在生成的桌面文件启动命令添加 `X-AppImage-Integrate=false`
+1. 官网下载的 `Appimage` 文件，解压后用 `appimagetool` 修改桌面文件添加 `X-AppImage-Integrate=false`，详情见[issues338](https://github.com/TheAssassin/AppImageLauncher/issues/338#issuecomment-729822984)
 
 2. 使用 `yay` 安装 `jetbrains-toolbox-fix`
