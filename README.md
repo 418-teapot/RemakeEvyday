@@ -145,7 +145,7 @@ Vertical Candidate List=False
 PerScreenDPI=True
 
 # Font (设置成你喜欢的字体)
-Font="思源黑体 CN Medium 13"
+Font="Source Han Sans CN Medium 13"
 
 # 主题
 Theme=Material-Color-Pink
