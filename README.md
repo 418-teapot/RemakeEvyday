@@ -228,7 +228,7 @@ sudo pacman -S texlive-most texlive-lang
 ### C/C++ 环境
 
 ```bash
-sudo pacman -S cmake
+sudo pacman -S clang llvm gdb lldb cmake
 ```
 
 `vscode` 中的 `cmake-tools` 有时会扫描不到 `kit`，这时要按下 `ctrl+shift+p` 输入 `Edit Usr-Local CMake Kits`,按照以下形式
@@ -243,4 +243,12 @@ sudo pacman -S cmake
     }
   }
 ]
+```
+
+### vim 配置
+
+`pacman` 源中的 `ctags` 是 `universal-ctags`
+
+```bash
+sudo pacman -S ctags
 ```
