@@ -203,6 +203,26 @@ sudo pacman -S plasma5-applets-active-window-control
 
 `在图标和文字旁显示`: `ON`
 
+- 部分 `gtk` 应用无法应用全局菜单
+
+如 `inkscape` 等，按照以下命令
+
+```bash
+sudo pacman -S appmenu-gtk-module
+```
+
+详情参照[Some applications are not using the global menu!](https://www.reddit.com/r/kde/comments/hmd60q/some_applications_are_not_using_the_global_menu/)
+
+- 部分 `java` 应用无法应用全局菜单
+
+如 `jetbrains` 全家桶等，可能有几种情况：
+
+1. 缺少 `libdbusmenu-glib` 包，使用 `pacman` 安装即可
+
+2. `IDE` 中安装了别的主题，插件无法启动 `javaFX`，在 `IDE` 中安装 `JavaFX Runtime for plugins` 插件
+
+详情参照[IDEA2020.2版本无法开启KDE全局菜单的解决方案](https://www.cnblogs.com/hh09cnblogs/p/13867860.html)
+
 ### vscode
 
 ```bash
