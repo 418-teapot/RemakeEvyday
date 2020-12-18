@@ -167,11 +167,9 @@ chsh -s /bin/zsh
 
 ~~- 安装 `OhMyZsh` 主题(废弃)~~
 
-
 ```bash
 git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
 ```
-
 
 - 安装 `zinit` 管理器
 
@@ -298,8 +296,8 @@ Because of the way the regular Jetbrains toolbox app works, AppImageLauncher is 
 
 - 暂时解决方案(任选其一)
 
-~~1. 官网下载的 `Appimage` 文件，解压后用 `appimagetool` 修改桌面文件添加 `X-AppImage-Integrate=false`，详情见[issues338](https://github.com/TheAssassin/AppImageLauncher/issues/338#issuecomment-729822984) ~~
+1. <del>官网下载的 `Appimage` 文件，解压后用 `appimagetool` 修改桌面文件添加 `X-AppImage-Integrate=false`，详情见[issues338](https://github.com/TheAssassin/AppImageLauncher/issues/338#issuecomment-729822984)</del>
 
-~~2. 使用 `yay` 安装 `jetbrains-toolbox-fix` ~~
+2. <del>使用 `yay` 安装 `jetbrains-toolbox-fix`</del>
 
 3. `vim ~/.config/appimagelauncher.cfg` 将 `ask_to_move` 置为 `false`
