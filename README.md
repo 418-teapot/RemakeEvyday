@@ -267,6 +267,23 @@ sudo pacman -S clang llvm gdb lldb cmake
 
 ### vim 配置
 
+- `coc.nvim` 依赖
+
+```bash
+sudo pacman -S npm ccls
+
+# 在vim中运行
+CocInstall coc-json coc-cmake coc-snippets
+```
+
+`coc.nvim` 配置见 `coc-settings.json`
+
+- `vim-devicons` 不显示图标的问题
+
+```bash
+yay -S nerd-fonts-jetbrains-mono
+```
+
 `pacman` 源中的 `ctags` 是 `universal-ctags`
 
 ```bash
