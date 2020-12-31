@@ -1,7 +1,7 @@
 " Install vim-plug if not found
 " if empty(glob('~/.vim/autoload/plug.vim'))
 if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+  silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 endif
 
@@ -30,7 +30,7 @@ Plug 'vim-airline/vim-airline-themes'
 " dirvish
 " Plug 'justinmk/vim-dirvish'
 " 快捷键导航
-Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
+Plug 'liuchengxu/vim-which-key', {'on': ['WhichKey', 'WhichKey!']}
 " 自动补全括号
 Plug 'jiangmiao/auto-pairs'
 " 快速包围
@@ -38,9 +38,9 @@ Plug 'tpope/vim-surround'
 " 对齐线
 Plug 'Yggdroot/indentLine', {'for': ['python', 'c', 'h', 'cpp', 'go', 'java', 'vim']}
 " 文件搜索
-Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
+Plug 'Yggdroot/LeaderF', {'do': ':LeaderfInstallCExtension'}
 " coc.nvim 代码补全 LSP
-Plug 'neoclide/coc.nvim'
+Plug 'neoclide/coc.nvim', {'do': ':CocInstall coc-cmake coc-json coc-snippets'}
 " 自动增量 ctags
 Plug 'ludovicchabant/vim-gutentags'
 " 自定义补全
