@@ -278,10 +278,10 @@ CocInstall coc-json coc-cmake coc-snippets
 
 `coc.nvim` 配置见 `coc-settings.json`
 
-- `vim-devicons` 不显示图标的问题
+- 剪切板
 
 ```bash
-yay -S nerd-fonts-jetbrains-mono
+sudo pacman -S xsel
 ```
 
 `pacman` 源中的 `ctags` 是 `universal-ctags`
