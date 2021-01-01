@@ -1,14 +1,14 @@
 "-----------------------自动下载 vim-plug 和相关插件----------------------------
 if has('nvim')
-    let g:plug_path = '~/.local/share/nvim/site/autoload/plug.vim'
-    let g:download_path = stdpath('data').'/plugged'
+    let s:plug_path = '~/.local/share/nvim/site/autoload/plug.vim'
+    let s:download_path = stdpath('data').'/plugged'
 else
-    let g:plug_path = '~/.vim/autoload/plug.vim'
-    let g:download_path = '~/.vim/plugged'
+    let s:plug_path = '~/.vim/autoload/plug.vim'
+    let s:download_path = '~/.vim/plugged'
 endif
 
-if empty(glob(plug_path))
-  silent !curl -fLo plug_path --create-dirs
+if empty(glob(s:plug_path))
+  silent !curl -fLo s:plug_path --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 endif
 
@@ -19,7 +19,7 @@ autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
 
 
 "---------------------------------插件管理--------------------------------------
-call plug#begin(download_path)
+call plug#begin(s:download_path)
 " 快速对齐
 Plug 'junegunn/vim-easy-align'
 " 主题管理
@@ -31,7 +31,7 @@ Plug 'vim-airline/vim-airline'
 " airline 主题
 Plug 'vim-airline/vim-airline-themes'
 " 快捷键导航
-Plug 'liuchengxu/vim-which-key', {'on': ['WhichKey', 'WhichKey!']}
+Plug 'liuchengxu/vim-which-key'
 " 自动补全括号
 Plug 'jiangmiao/auto-pairs'
 " 快速包围
@@ -119,7 +119,7 @@ let g:asyncrun_open=6
 " 显示隐藏文件
 let g:Lf_ShowHidden=1
 
-"---------------------------------gutentags-------------------------------------
+"--------------------------------gutentags--------------------------------------
 " 设置 ctags 路径
 set tags=./.tags;,.tags
 " gutentags 搜索工程目录的标志，碰到这些文件/目录名就停止向上一级目录递归
@@ -142,12 +142,37 @@ let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
 if !isdirectory(s:vim_tags)
    silent! call mkdir(s:vim_tags, 'p')
 endif
+
+"--------------------------------which-key--------------------------------------
+" 启用悬浮窗口
+let g:which_key_use_floating_win = 1
+" 映射 Ctrl 键和 Alt 键 https://github.com/liuchengxu/vim-which-key/issues/52
+function! MapKey(key)
+    if len(a:key) == 3 && a:key[1] == "-" && (a:key[0]=="C" || a:key[0]=="M")
+        let s:mapkey = "<".a:key.">"
+    else
+        let s:mapkey = a:key
+    endif
+    return s:mapkey
+endfunction
+function! MapWhichKey(key)
+    execute "WhichKey '".MapKey(a:key)."'"
+endfunction
+
+let g:C_w_key_map = {
+    \ 'name' : 'window',
+    \ 'w' : ['<C-w>w', 'other window']
+    \ }
+call which_key#register('<C-w>', g:C_w_key_map)
 "-------------------------------------------------------------------------------
 
 
 "---------------------------------按键绑定--------------------------------------
-let g:mapleader=" "
+let g:mapleader="\<Space>"
 set timeoutlen=50
-nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
+nnoremap <leader>u :LeaderfFunction<CR>
 nnoremap <F10> :call asyncrun#quickfix_toggle(6)<CR>
+
+nnoremap <leader> :call MapWhichKey(' ')<CR>
+nnoremap <C-w> :call MapWhichKey('C-w')<CR>
 "-------------------------------------------------------------------------------
