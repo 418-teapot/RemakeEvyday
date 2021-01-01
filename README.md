@@ -267,28 +267,36 @@ sudo pacman -S clang llvm gdb lldb cmake
 
 ### vim 配置
 
-- `coc.nvim` 依赖
+- `neovim` 安装
 
 ```bash
-sudo pacman -S npm ccls
+sudo pacman -S neovim
 
-# 在vim中运行
-CocInstall coc-json coc-cmake coc-snippets
+# neovim 检查
+:checkhealth
 ```
 
-`coc.nvim` 配置见 `coc-settings.json`
-
-- 剪切板
+检查后可能缺少剪切板
 
 ```bash
 sudo pacman -S xsel
 ```
 
-`pacman` 源中的 `ctags` 是 `universal-ctags`
+- `coc.nvim` 依赖
+
+```bash
+sudo pacman -S npm ccls
+```
+
+`coc.nvim` 配置见 `coc-settings.json`
+
+- ctags 安装
 
 ```bash
 sudo pacman -S ctags
 ```
+
+注意：`pacman` 源中的 `ctags` 是 `universal-ctags`
 
 ### jetbrains-toolbox
 
