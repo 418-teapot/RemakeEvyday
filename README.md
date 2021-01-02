@@ -265,6 +265,36 @@ sudo pacman -S clang llvm gdb lldb cmake
 ]
 ```
 
+### Ranger 配置
+
+- `ranger` 安装
+
+```bash
+sudo pacman -S ranger
+```
+
+- 高亮显示
+
+```bash
+sudo pacman -S highlight
+```
+
+- 生成配置文件
+
+```bash
+ranger --copy-config=all
+
+# To stop ranger from loading both the default and your custom rc.conf,
+# please set the environment variable RANGER_LOAD_DEFAULT_RC to FALSE.
+```
+
+- 插件安装
+
+```bash
+# 图标显示，需要安装 nerd-fonts
+git clone https://github.com/alexanderjeurissen/ranger_devicons ~/.config/ranger/plugins/ranger_devicons
+```
+
 ### vim 配置
 
 - `neovim` 安装
