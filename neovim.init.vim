@@ -1,10 +1,10 @@
 "-----------------------自动下载 vim-plug 和相关插件----------------------------
 if has('nvim')
-    let s:plug_path = '~/.local/share/nvim/site/autoload/plug.vim'
-    let s:download_path = stdpath('data').'/plugged'
+    let s:plug_path='~/.local/share/nvim/site/autoload/plug.vim'
+    let s:download_path=stdpath('data').'/plugged'
 else
-    let s:plug_path = '~/.vim/autoload/plug.vim'
-    let s:download_path = '~/.vim/plugged'
+    let s:plug_path='~/.vim/autoload/plug.vim'
+    let s:download_path='~/.vim/plugged'
 endif
 
 if empty(glob(s:plug_path))
@@ -30,8 +30,6 @@ Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
 " airline 主题
 Plug 'vim-airline/vim-airline-themes'
-" 快捷键导航
-Plug 'liuchengxu/vim-which-key'
 " 自动补全括号
 Plug 'jiangmiao/auto-pairs'
 " 快速包围
@@ -98,6 +96,8 @@ autocmd FileType c,cpp,cc,javascript,typescript set sw=2 ts=2 sts=2
 " 设置鼠标
 set selection=exclusive
 set selectmode=mouse,key
+" 设置快捷键响应延迟
+set timeoutlen=500
 "-------------------------------------------------------------------------------
 
 
@@ -118,61 +118,56 @@ let g:asyncrun_open=6
 "---------------------------------LeaderF---------------------------------------
 " 显示隐藏文件
 let g:Lf_ShowHidden=1
+" 启用悬浮窗口
+let g:Lf_WindowPosition='popup'
+let g:Lf_PreviewInPopup=1
 
 "--------------------------------gutentags--------------------------------------
 " 设置 ctags 路径
 set tags=./.tags;,.tags
 " gutentags 搜索工程目录的标志，碰到这些文件/目录名就停止向上一级目录递归
-let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
+let g:gutentags_project_root=['.root', '.svn', '.git', '.hg', '.project']
 " 所生成的数据文件的名称
-let g:gutentags_ctags_tagfile = '.tags'
+let g:gutentags_ctags_tagfile='.tags'
 " 添加 ctags 支持
-let g:gutentags_modules = []
+let g:gutentags_modules=[]
 if executable('ctags')
-   let g:gutentags_modules += ['ctags']
+   let g:gutentags_modules+=['ctags']
 endif
 " 将自动生成的 tags 文件全部放入 ~/.cache/tags 目录中，避免污染工程目录
 let s:vim_tags = expand('~/.cache/tags')
-let g:gutentags_cache_dir = s:vim_tags
+let g:gutentags_cache_dir=s:vim_tags
 " 配置 ctags 的参数
-let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
-let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
-let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
+let g:gutentags_ctags_extra_args=['--fields=+niazS', '--extra=+q']
+let g:gutentags_ctags_extra_args+=['--c++-kinds=+px']
+let g:gutentags_ctags_extra_args+=['--c-kinds=+px']
 " 检测 ~/.cache/tags 不存在就新建
 if !isdirectory(s:vim_tags)
    silent! call mkdir(s:vim_tags, 'p')
 endif
 
-"--------------------------------which-key--------------------------------------
-" 启用悬浮窗口
-let g:which_key_use_floating_win = 1
-" 映射 Ctrl 键和 Alt 键 https://github.com/liuchengxu/vim-which-key/issues/52
-function! MapKey(key)
-    if len(a:key) == 3 && a:key[1] == "-" && (a:key[0]=="C" || a:key[0]=="M")
-        let s:mapkey = "<".a:key.">"
-    else
-        let s:mapkey = a:key
-    endif
-    return s:mapkey
-endfunction
-function! MapWhichKey(key)
-    execute "WhichKey '".MapKey(a:key)."'"
-endfunction
-
-let g:C_w_key_map = {
-    \ 'name' : 'window',
-    \ 'w' : ['<C-w>w', 'other window']
-    \ }
-call which_key#register('<C-w>', g:C_w_key_map)
+"---------------------------------rnvimr----------------------------------------
+" 当打开文件后自动关闭 ranger
+let g:rnvimr_enable_picker=1
 "-------------------------------------------------------------------------------
 
 
 "---------------------------------按键绑定--------------------------------------
 let g:mapleader="\<Space>"
-set timeoutlen=50
-nnoremap <leader>u :LeaderfFunction<CR>
-nnoremap <F10> :call asyncrun#quickfix_toggle(6)<CR>
 
-nnoremap <leader> :call MapWhichKey(' ')<CR>
-nnoremap <C-w> :call MapWhichKey('C-w')<CR>
+xmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
+
+let g:Lf_ShortcutF = "<leader>ff"
+let g:Lf_ShortcutB = "<leader>fb"
+nnoremap <leader>fm :<C-U><C-R>=printf("Leaderf mru %s", "")<CR><CR>
+nnoremap <leader>ft :<C-U><C-R>=printf("Leaderf bufTag %s", "")<CR><CR>
+nnoremap <leader>fl :<C-U><C-R>=printf("Leaderf line %s", "")<CR><CR>
+nnoremap <leader>fu :<C-U><C-R>=printf("Leaderf function %s", "")<CR><CR>
+
+nnoremap <M-a> :<C-u>call asyncrun#quickfix_toggle(6)<CR>
+nnoremap <M-,> :<C-u>AsyncRun<Space>
+
+nnoremap <M-r> :<C-u>RnvimrToggle<CR>
+tnoremap <M-r> <C-\><C-n>:<C-u>RnvimrToggle<CR>
 "-------------------------------------------------------------------------------
