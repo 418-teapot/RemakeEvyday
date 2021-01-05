@@ -334,6 +334,12 @@ sudo pacman -S ctags global
 
 注意：`pacman` 源中的 `ctags` 是 `universal-ctags`
 
+- `ripgrep` 安装
+
+```bash
+sudo pacman -S ripgrep
+```
+
 ### jetbrains-toolbox
 
 - 安装 `jdk`
