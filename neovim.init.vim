@@ -38,14 +38,16 @@ Plug 'tpope/vim-surround'
 Plug 'Yggdroot/indentLine'
 " 自定义补全
 Plug 'honza/vim-snippets'
+" 文本对象
+Plug 'kana/vim-textobj-user'
+" 悬浮终端
+Plug 'voldikss/vim-floaterm'
+" 侧边显示 git 状态
+Plug 'airblade/vim-gitgutter'
 " 文件搜索
 Plug 'Yggdroot/LeaderF', {'do': ':LeaderfInstallCExtension'}
-" Ranger 悬浮窗口
-Plug 'kevinhwang91/rnvimr'
 " coc.nvim 代码补全 LSP
 Plug 'neoclide/coc.nvim', {'do': ':CocInstall coc-json coc-cmake coc-snippets'}
-" 自动增量 ctags
-Plug 'ludovicchabant/vim-gutentags'
 " 异步运行
 Plug 'skywind3000/asyncrun.vim'
 call plug#end()
@@ -98,6 +100,9 @@ set selection=exclusive
 set selectmode=mouse,key
 " 设置快捷键响应延迟
 set timeoutlen=500
+" 设置 tags 路径
+set tags=./.tags;,.tags
+
 "-------------------------------------------------------------------------------
 
 
@@ -111,6 +116,12 @@ let g:airline#extensions#tabline#enabled=1
 " 设置主题
 let g:airline_theme='molokai'
 
+"---------------------------------Floaterm--------------------------------------
+" 设置浮动窗口大小
+let g:floaterm_width=0.8
+" 当含有下列文件时，终端打开路径为工程根路径
+let g:floaterm_rootmarkers=['.project', '.root', '.git', '.ccls']
+
 "---------------------------------AsyncRun--------------------------------------
 " 自动打开窗口，高度为6
 let g:asyncrun_open=6
@@ -121,34 +132,14 @@ let g:Lf_ShowHidden=1
 " 启用悬浮窗口
 let g:Lf_WindowPosition='popup'
 let g:Lf_PreviewInPopup=1
+" 自动生成 gtags 数据库
+let g:Lf_GtagsAutoGenerate=1
+" 设置项目根目录
+let g:Lf_RootMarkers=['.git', '.root', '.ccls', '.project', '.hg', '.svn']
+" 设置 gtags 对于原生支持的语言（C, C++, Java, PHP, Yacc, 汇编）使用内置 parser
+" 其他语言使用 pygments 作为 parser
+let g:Lf_Gtagslabel='native-pygments'
 
-"--------------------------------gutentags--------------------------------------
-" 设置 ctags 路径
-set tags=./.tags;,.tags
-" gutentags 搜索工程目录的标志，碰到这些文件/目录名就停止向上一级目录递归
-let g:gutentags_project_root=['.root', '.svn', '.git', '.hg', '.project']
-" 所生成的数据文件的名称
-let g:gutentags_ctags_tagfile='.tags'
-" 添加 ctags 支持
-let g:gutentags_modules=[]
-if executable('ctags')
-   let g:gutentags_modules+=['ctags']
-endif
-" 将自动生成的 tags 文件全部放入 ~/.cache/tags 目录中，避免污染工程目录
-let s:vim_tags = expand('~/.cache/tags')
-let g:gutentags_cache_dir=s:vim_tags
-" 配置 ctags 的参数
-let g:gutentags_ctags_extra_args=['--fields=+niazS', '--extra=+q']
-let g:gutentags_ctags_extra_args+=['--c++-kinds=+px']
-let g:gutentags_ctags_extra_args+=['--c-kinds=+px']
-" 检测 ~/.cache/tags 不存在就新建
-if !isdirectory(s:vim_tags)
-   silent! call mkdir(s:vim_tags, 'p')
-endif
-
-"---------------------------------rnvimr----------------------------------------
-" 当打开文件后自动关闭 ranger
-let g:rnvimr_enable_picker=1
 "-------------------------------------------------------------------------------
 
 
@@ -164,10 +155,20 @@ nnoremap <leader>fm :<C-U><C-R>=printf("Leaderf mru %s", "")<CR><CR>
 nnoremap <leader>ft :<C-U><C-R>=printf("Leaderf bufTag %s", "")<CR><CR>
 nnoremap <leader>fl :<C-U><C-R>=printf("Leaderf line %s", "")<CR><CR>
 nnoremap <leader>fu :<C-U><C-R>=printf("Leaderf function %s", "")<CR><CR>
+nnoremap <leader>fr :<C-U><C-R>=printf("Leaderf! gtags -r %s --auto-jump", expand("<cword>"))<CR><CR>
+nnoremap <leader>fd :<C-U><C-R>=printf("Leaderf! gtags -d %s --auto-jump", expand("<cword>"))<CR><CR>
+nnoremap <leader>fg :<C-U><C-R>=printf("Leaderf! rg -e %s ", expand("<cword>"))<CR>
 
-nnoremap <M-a> :<C-u>call asyncrun#quickfix_toggle(6)<CR>
-nnoremap <M-,> :<C-u>AsyncRun<Space>
+nnoremap <leader>ar :<C-u>call asyncrun#quickfix_toggle(6)<CR>
+nnoremap <leader>a, :<C-u>AsyncRun<Space>
 
-nnoremap <M-r> :<C-u>RnvimrToggle<CR>
-tnoremap <M-r> <C-\><C-n>:<C-u>RnvimrToggle<CR>
+let g:floaterm_keymap_toggle='<M-=>'
+nnoremap <leader>rg :<C-u>FloatermNew ranger<CR>
+tnoremap <leader>rg <C-\><C-n>:<C-u>FloatermKill ranger<CR>
+
+nmap ]h <Plug>(GitGutterNextHunk)
+nmap [h <Plug>(GitGutterPrevHunk)
+
+nmap <silent> <leader>cd <Plug>(coc-definition)
+nmap <silent> <leader>cr <Plug>(coc-references)
 "-------------------------------------------------------------------------------
