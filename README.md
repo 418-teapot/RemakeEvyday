@@ -295,6 +295,12 @@ ranger --copy-config=all
 git clone https://github.com/alexanderjeurissen/ranger_devicons ~/.config/ranger/plugins/ranger_devicons
 ```
 
+### lazygit 配置
+
+```bash
+sudo pacman -S lazygit
+```
+
 ### vim 配置
 
 - `neovim` 安装
@@ -320,10 +326,10 @@ sudo pacman -S npm ccls
 
 `coc.nvim` 配置见 `coc-settings.json`
 
-- ctags 安装
+- `tags` 安装
 
 ```bash
-sudo pacman -S ctags
+sudo pacman -S ctags global
 ```
 
 注意：`pacman` 源中的 `ctags` 是 `universal-ctags`
