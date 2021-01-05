@@ -298,7 +298,7 @@ git clone https://github.com/alexanderjeurissen/ranger_devicons ~/.config/ranger
 ### lazygit 配置
 
 ```bash
-sudo pacman -S lazygit
+yay -S lazygit
 ```
 
 ### vim 配置
