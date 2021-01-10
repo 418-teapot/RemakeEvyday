@@ -243,25 +243,25 @@ sudo pacman -S gnome-keyring
 
 ```json
 "configuration": {
-  "type": "object",
-  "title": "C++ Intellisense configuration",
+	"type": "object",
+  	"title": "C++ Intellisense configuration",
 	"properties": {
-    "codegnuglobal.encoding": {
-		"type": "string",
-		"default": "",
-		"description": "Specify the encoding of the command line output. (Normally it is the code page of Windows non-unicode program if it is not CP437)"
-   },
-	"codegnuglobal.executable": {
-	  "type": "string",
-		"default": "global",
-		"description": "Specify the path to the global executable. (If it is not in PATH already)"
-	},
-	"codegnuglobal.autoupdate": {
-		"type": "boolean",
-		"default": true,
-		"description": "Specify if global should automatically update the tags on file save. (You should turn it off in the workspace settings for large projects)"
+    		"codegnuglobal.encoding": {
+			"type": "string",
+			"default": "",
+			"description": "Specify the encoding of the command line output. (Normally it is the code page of Windows non-unicode program if it is not CP437)"
+   		},
+		"codegnuglobal.executable": {
+			"type": "string",
+			"default": "global",
+			"description": "Specify the path to the global executable. (If it is not in PATH already)"
+		},
+		"codegnuglobal.autoupdate": {
+			"type": "boolean",
+			"default": true,
+			"description": "Specify if global should automatically update the tags on file save. (You should turn it off in the workspace settings for large projects)"
+		}
 	}
- }
 }
 ```
 
@@ -269,28 +269,28 @@ sudo pacman -S gnome-keyring
 
 ```json
 "contributes": {
-  "configuration": {
-   "type": "object",
-   "title": "C++ Intellisense configuration",
-   "properties": {
-     "codegnuglobal.encoding": {
-     "type": "string",
-     "default": "",
-     "description": "Specify the encoding of the command line output. (Normally it is the code page of Windows non-unicode program if it is not CP437)"
-   },
-   "codegnuglobal.executable": {
-     "type": "string",
-     "default": "global",
-     "description": "Specify the path to the global executable. (If it is not in PATH already)"
-   },
-   "codegnuglobal.autoupdate": {
-     "type": "boolean",
-     "default": true,
-     "description": "Specify if global should automatically update the tags on file save. (You should turn it off in the workspace settings for large projects)"
-   }
-  }
- }
-}
+	"configuration": {
+        	"type": "object",
+        	"title": "C++ Intellisense configuration",
+            	"properties": {
+                	"codegnuglobal.encoding": {
+                		"type": "string",
+                    		"default": "",
+                    		"description": "Specify the encoding of the command line output. (Normally it is the code page of Windows non-unicode program if it is not CP437)"
+                	},
+                	"codegnuglobal.executable": {
+                    		"type": "string",
+                    		"default": "global",
+                    		"description": "Specify the path to the global executable. (If it is not in PATH already)"
+                },
+                	"codegnuglobal.autoupdate": {
+                    		"type": "boolean",
+                    		"default": true,
+                    		"description": "Specify if global should automatically update the tags on file save. (You should turn it off in the workspace settings for large projects)"
+                	}
+            	}
+	}
+},
 ```
 
 详情见[issues33](https://github.com/austin-----/code-gnu-global/issues/33#issuecomment-555502863)
