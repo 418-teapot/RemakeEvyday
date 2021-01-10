@@ -237,6 +237,64 @@ yay -S visual-stduio-code-bin
 sudo pacman -S gnome-keyring
 ```
 
+- `C++ Intellisense` 插件
+
+会出现在 `settings.json` 中 `codegnuglobal` 无法设置的情况，这是一个 `bug` ，需要更改该插件的 `package.json`，将
+
+```json
+"configuration": {
+  "type": "object",
+  "title": "C++ Intellisense configuration",
+	"properties": {
+    "codegnuglobal.encoding": {
+		"type": "string",
+		"default": "",
+		"description": "Specify the encoding of the command line output. (Normally it is the code page of Windows non-unicode program if it is not CP437)"
+   },
+	"codegnuglobal.executable": {
+	  "type": "string",
+		"default": "global",
+		"description": "Specify the path to the global executable. (If it is not in PATH already)"
+	},
+	"codegnuglobal.autoupdate": {
+		"type": "boolean",
+		"default": true,
+		"description": "Specify if global should automatically update the tags on file save. (You should turn it off in the workspace settings for large projects)"
+	}
+ }
+}
+```
+
+移动到 `contributes: {},` 中
+
+```json
+"contributes": {
+  "configuration": {
+   "type": "object",
+   "title": "C++ Intellisense configuration",
+   "properties": {
+     "codegnuglobal.encoding": {
+     "type": "string",
+     "default": "",
+     "description": "Specify the encoding of the command line output. (Normally it is the code page of Windows non-unicode program if it is not CP437)"
+   },
+   "codegnuglobal.executable": {
+     "type": "string",
+     "default": "global",
+     "description": "Specify the path to the global executable. (If it is not in PATH already)"
+   },
+   "codegnuglobal.autoupdate": {
+     "type": "boolean",
+     "default": true,
+     "description": "Specify if global should automatically update the tags on file save. (You should turn it off in the workspace settings for large projects)"
+   }
+  }
+ }
+}
+```
+
+详情见[issues33](https://github.com/austin-----/code-gnu-global/issues/33#issuecomment-555502863)
+
 ### LaTex
 
 ```bash
