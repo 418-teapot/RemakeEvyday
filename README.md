@@ -183,6 +183,13 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zinit/master/doc/i
 
 `zshrc` 见本项目的 `zsh.zshrc`
 
+### `git` 设置
+
+```bash
+git config --global user.name 'your name'
+git config --global user.email 'your email'
+```
+
 ### 全局菜单
 
 - 全局菜单部件在 KDE 小部件中
