@@ -53,3 +53,9 @@ zinit snippet OMZ::plugins/git/git.plugin.zsh
 # 为子串搜索绑定按键 ctrl+p ctrl+n
 bindkey '^P' history-substring-search-up
 bindkey '^N' history-substring-search-down
+
+# 环境变量设置
+export EDITOR=/usr/bin/vim
+
+# 别名设置
+alias ll='ls -al'
