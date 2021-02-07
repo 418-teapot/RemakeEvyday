@@ -13,9 +13,12 @@ if empty(glob(s:plug_path))
     echom vimplug
 endif
 
-autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
-  \| PlugInstall --sync | source $MYVIMRC
-\| endif
+augroup AutoUpdate
+    autocmd!
+    autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+        \| PlugInstall --sync | source $MYVIMRC
+    \| endif
+augroup END
 "-------------------------------------------------------------------------------
 
 
