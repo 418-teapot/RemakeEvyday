@@ -98,7 +98,10 @@ set expandtab
 set smartindent
 " 针对 c, cpp, js, ts 等语言特别设置
 filetype indent on
-autocmd FileType c,cpp,cc,javascript,typescript set sw=2 ts=2 sts=2
+augroup FileTab
+    autocmd!
+    autocmd FileType c,cpp,cc,javascript,typescript set sw=2 ts=2 sts=2
+augroup END
 " 设置鼠标
 set selection=exclusive
 set selectmode=mouse,key
