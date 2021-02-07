@@ -8,8 +8,9 @@ else
 endif
 
 if empty(glob(s:plug_path))
-  silent !curl -fLo s:plug_path --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    let vimplug=system("curl -fLo " . s:plug_path . " --create-dirs
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim")
+    echom vimplug
 endif
 
 autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
