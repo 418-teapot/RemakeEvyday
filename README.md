@@ -252,6 +252,7 @@ sudo pacman -S gnome-keyring
 
 ```bash
 sudo pacman -S texlive-most texlive-lang
+yay -S texlive-most-doc
 ```
 
 使用 `vscode` 进行编写，`xelatex` 编译，`vscode` 中的设置已同步
