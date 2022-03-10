@@ -56,6 +56,13 @@ sudo pacman-mirrors -g
 sudo pacman -Syyu
 ```
 
+或者
+
+```bash
+sudo vim /etc/pacman.d/mirrorlist
+sudo pacman -Syyu
+```
+
 - 添加 archlinuxcn(可选)
 
 ```bash
